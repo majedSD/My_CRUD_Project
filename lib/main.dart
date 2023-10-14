@@ -1,3 +1,9 @@
+/**
+ *
+ * -------------------------Majedul Islam----------------
+ * -------------------------Module-10-Assignment---------
+ */
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -64,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
              String str2=fild2.text.trim();
               Todo todoo=Todo(str1,str2);
               todo.add(todoo);
+              fild1.text='';
+              fild2.text='';
               setState(() {});
             },
                 child:Text('Add',style: TextStyle(fontWeight: FontWeight.bold),),
@@ -91,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         showDialog(
                             context: context, builder:(context){
                               return AlertDialog(
-                                 title: Text('Actions'),
+                                 title: Text('Alert',style:TextStyle(fontWeight: FontWeight.bold),),
                                 actions: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,20 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     padding: const EdgeInsets.all(16.0),
                                                     child: Column(
                                                       children: [
-                                                        Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Text(
-                                                              'Update To Do',
-                                                              style: Theme.of(context).textTheme.titleLarge,
-                                                            ),
-                                                            IconButton(
-                                                                onPressed: () {
-                                                                  Navigator.pop(context);
-                                                                },
-                                                                icon: Icon(Icons.close)),
-                                                          ],
-                                                        ),
                                                         SizedBox(
                                                           height: 10,
                                                         ),
@@ -141,18 +135,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         ),
                                                         SizedBox(height: 10,),
                                                         SizedBox(
-                                                          width: double.infinity,
                                                           height: 45,
                                                           child: ElevatedButton(onPressed: () {
+                                                            Navigator.pop(context);
                                                             String str3=todoTEController1.text.trim();
                                                             String str4=todoTEController2.text.trim();
                                                            todo[index].name=str3;
                                                            todo[index].description=str4;
+                                                           todoTEController2.text='';
+                                                           todoTEController1.text='';
                                                             setState(() {});
-                                                            //widget.onTodoUpdate(todoTEController.text.trim());
-                                                            ///controler teka prapto text ka ontodoupdate er maddome return korbe
-                                                          }, child: Text('Add')),
-                                                        )
+                                                          }, child: Text('Edit Done'),
+                                                            style:ElevatedButton.styleFrom(
+                                                                backgroundColor: Colors.red
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   );
